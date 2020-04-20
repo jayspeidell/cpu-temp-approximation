@@ -15,7 +15,8 @@ Where includes_units is a yes/no statement describing the input file.
 import sys
 from solver import solve
 from numpy import array, append
-import linear_piecewise_interpolation
+from linear_piecewise_interpolation import piecewise_solver
+from linear_least_squares import linear_least_squares
 from parse_temps import (parse_raw_temps)
 import os
 import glob
@@ -38,6 +39,7 @@ def main():
     sys.argv[2] : string
         A "yes"/"no" boolean flagging the input data as being labelled or not.
     """
+    # Clears output directory.
     for f in glob.glob('output/*'):
         os.remove(f)
 
@@ -56,9 +58,9 @@ def main():
                 index.append(temps_as_floats[0])
                 data = append(data, [temps_as_floats[1]], axis=0)
 
+    piecewise_solver(index, data)
+    linear_least_squares(index, data)
 
-    linear_piecewise_interpolation.piecewise_solver(index, data)
-    
 
 if __name__== "__main__":
   main()

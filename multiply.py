@@ -27,11 +27,18 @@ def multiply(lhs, rhs):
     result : numpy.array
         The resulting matrix
     """
-    result = zeros((lhs.shape[0], rhs.shape[1]))
+    try:
+        result = zeros((lhs.shape[0], rhs.shape[1]))
+        for i in range(lhs.shape[0]):
+            for j in range(rhs.shape[1]):
+                for k in range(lhs.shape[1]):
+                    result[i][j] += lhs[i][k] * rhs[k][j]
 
-    for i in range(lhs.shape[0]):
-        for j in range(rhs.shape[1]):
-            for k in range(lhs.shape[1]):
-                result[i][j] += lhs[i][k] * rhs[k][j]
+    except:
+        result = zeros((lhs.shape[0], 1))
+        for i in range(lhs.shape[0]):
+            for j in range(1):
+                for k in range(lhs.shape[1]):
+                    result[i][j] += lhs[i][k] * rhs[k]
 
-    return result
+    return result.flatten() if len(rhs.shape) == 1 else result

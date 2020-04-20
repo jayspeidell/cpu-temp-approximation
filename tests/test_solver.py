@@ -1,8 +1,8 @@
 
 import pytest
-from numpy import array
+from numpy import array, array_equal
 
-from solver import solve
+from solver import solve, transpose
 
 @pytest.mark.parametrize(
     'X, Xt, Y, PrintZero, coeffs, solution', [
@@ -48,5 +48,39 @@ from solver import solve
     )
 ])
 def test_solve(X, Xt, Y, PrintZero, coeffs, solution):
-    assert solve(X, Xt, Y, PrintZero)[0] == coeffs
-    assert solve(X, Xt, Y, PrintZero)[1] == solution
+    """
+    The parameter Xt has been deprecated but remains available in testing. 
+    """
+    assert solve(X, Y, PrintZero)[0] == coeffs
+    assert solve(X, Y, PrintZero)[1] == solution
+
+
+@pytest.mark.parametrize(
+    'X, Xt', [
+    (
+        array([
+                [1,0,0],
+                [1,1,1],
+                [1,2,4]
+                ]),
+        array([
+                [1,1,1],
+                [0,1,2],
+                [0,1,4]
+                ]),
+    ),
+    (
+        array([
+                [1,0,0],
+                [1,1,1],
+                [1,2,4]
+                ]),
+        array([
+                [1,1,1],
+                [0,1,2],
+                [0,1,4]
+                ])
+    )
+])
+def test_transpose(X, Xt):
+    assert array_equal(transpose(X), Xt)

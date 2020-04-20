@@ -1,5 +1,5 @@
 import pytest
-from numpy import array, matmul, array_equal
+from numpy import array, matmul, array_equal, allclose
 
 from multiply import multiply
 
@@ -56,6 +56,15 @@ from multiply import multiply
             [1],
             [4]
         ])
+    ),
+    # Test 1d array handling
+    (
+        array([
+            [1,0,0],
+            [1,1,1],
+            [1,2,4]
+        ]),
+        array([0,1,4])
     )
     ])
 def test_multiply(lhs,rhs):

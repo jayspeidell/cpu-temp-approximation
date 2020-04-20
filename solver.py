@@ -1,16 +1,16 @@
 """
 Contains a driver function to demonstrate that prepares the input for solving
 a system of linear equations, uses the rref() function in rref.py to solve it,
-then returns the results. 
+then returns the results.
 """
 
-from numpy import array, concatenate
+from numpy import array, concatenate, zeros
 from multiply import multiply
 from rref import rref
 
 __all__ = ['solve']
 
-def solve(X, Xt, Y, PrintZero=True, Verbose=False):
+def solve(X, Y, PrintZero=True, Verbose=False):
     """
     A driver function that builds the system of linear equations, calls rref()
     to solve it, and then returns the solution in string form. It also has
@@ -34,6 +34,7 @@ def solve(X, Xt, Y, PrintZero=True, Verbose=False):
     - phi_hat : string
         the solution equation as a string.
     """
+    Xt = transpose(X)
 
     XtX = multiply(Xt,X)
     XtY = multiply(Xt,Y)
@@ -56,8 +57,12 @@ def solve(X, Xt, Y, PrintZero=True, Verbose=False):
         print(XtY)
         print()
 
-    system = concatenate((XtX, XtY), axis=1)
-
+    print(XtX)
+    print(XtY)
+    try:
+        system = concatenate((XtX, XtY), axis=1)
+    except:
+        system = concatenate((XtX, XtY[:,None]), axis=1)
     if Verbose:
         print("System of Linear Equations: ")
         print(system)
@@ -80,3 +85,29 @@ def solve(X, Xt, Y, PrintZero=True, Verbose=False):
                 phi_hat += " + "
 
     return list(solved[:,-1]), phi_hat
+
+
+def transpose(X):
+    """
+    A simple function to transpose a matrix.
+
+    Parameters
+    -------
+    X : numpy.array X
+
+    Returns
+    -------
+    Xt : numpy.array
+        The transpose of X
+    """
+    if len(X.shape) == 1:
+        return X
+    else:
+        Xt = zeros((X.shape[1], X.shape[0]))
+        for i in range(X.shape[0]):
+            for j in range(X.shape[1]):
+                Xt[j][i] = X[i][j]
+
+    print(Xt)
+
+    return Xt
