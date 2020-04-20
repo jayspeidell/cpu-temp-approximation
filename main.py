@@ -17,7 +17,8 @@ from solver import solve
 from numpy import array, append
 import linear_piecewise_interpolation
 from parse_temps import (parse_raw_temps)
-
+import os
+import glob
 
 __all__ = ['main']
 
@@ -27,6 +28,9 @@ def main():
 
 
     """
+    for f in glob.glob('output/*'):
+        os.remove(f)
+
     input_temps = sys.argv[1]
     includes_units = sys.argv[2] == "yes"
 

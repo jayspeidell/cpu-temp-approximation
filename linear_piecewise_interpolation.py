@@ -33,21 +33,13 @@ class Step:
                                 (self.end - self.start)
                             )
 
-
-
-
-
-
-def piecewise_solver(timestamps, data):
+def piecewise_solver(timestamps, data, output = 'output/'):
     """
     Iterate through a list of data points and print the resulting piecewise
     functions to a text file. One text file will be generated for each CPU
     for and each line will represent one piecewise step in the format:
 
     {start time} <= {end time} < ; y_{step number} = {offset} + {slope}x; interpolation
-
-    This is a driver function and as such is not covered by unit tests, the real
-    math is being done in the Step class.
 
     Parameters
     -------
@@ -56,6 +48,8 @@ def piecewise_solver(timestamps, data):
     data : numpy.array
         An array of temperature readings where rows represent time steps and
         columns represent CPU cores.
+    output : string
+        The base directory for output.
 
     Returns
     -------
@@ -64,7 +58,7 @@ def piecewise_solver(timestamps, data):
 
     active_files = []
     for i in range(data.shape[1]):
-        active_files.append(open(BASE_FILENAME + str(i+1) + ".txt", 'a+'))
+        active_files.append(open(output + BASE_FILENAME + str(i+1) + ".txt", 'a+'))
 
     step = Step()
     next_step = Step()
