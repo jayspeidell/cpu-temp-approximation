@@ -26,7 +26,17 @@ def main():
     """
     main()
 
+    The main function for this application. It clears the output directory,
+    reads in new data as an index list and numpy array, and passes that data
+    to the appropriate modules.
 
+    Parameters
+    -------
+
+    sys.argv[1] : string
+        Path to the file containing data to be analyzed.
+    sys.argv[2] : string
+        A "yes"/"no" boolean flagging the input data as being labelled or not.
     """
     for f in glob.glob('output/*'):
         os.remove(f)
@@ -48,9 +58,7 @@ def main():
 
 
     linear_piecewise_interpolation.piecewise_solver(index, data)
-
-
-
+    
 
 if __name__== "__main__":
   main()

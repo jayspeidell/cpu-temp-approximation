@@ -1,3 +1,38 @@
+"""
+A module for calculating piecewise linear interpolation for parallel series
+of time step data points and printing the subsequent formulas to individual
+text files.
+
+Depends on:
+
+parse_temps.parse_raw_temps
+sys
+os.path
+numpy
+
+Constants
+----------
+
+BASE_FILENAME : start
+    A base string for generating filenames
+COL_WIDTH : int
+    The default output column width when printing to text file.
+PRECISION : int
+    The precision of all floats in text output.
+COL_1 : string
+    An output template for column 1.
+COL_2 : string
+    An output template for column 2.
+COL_3 : string
+    An output template for column 3.
+COL_4 : string
+    An output template for column 4.
+COL_5 : string
+    An output template for column 5.
+LINE : string
+    A concatenation of all output templates for printing a full line.
+"""
+
 from parse_temps import (parse_raw_temps)
 import sys
 from os import path
@@ -18,13 +53,82 @@ COL_5 = "{4:>" + str(COL_WIDTH) + "." + str(PRECISION) + "f}x; interpolation \n"
 LINE = COL_1 + COL_2 + COL_3 + COL_4 + COL_5
 
 class Step:
+    """
+    A Step represents one piecewise step in linear interpolation. An instance
+    is initialized with `start`, `data`, and `stepno` and uses information from
+    the following Step instance in the sequence to update `end` and `slope`.
+
+    The class scales to handle parallel timelines.
+
+    Attributes
+    ----------
+    start : int
+        The starting time stamp for this piecewise segment.
+    end : int
+        The end time stamp for this piecewise segment.
+    data : list of floats
+        A list of starting x values for line segments associated with this
+        time step.
+    stepno : int
+        The sequence number of this segment.
+    slope : list of floats
+        A list of slope values for line segments associated with this time step.
+
+    Methods
+    -------
+    __init__(self, start=-1, end=-1, data=[], stepno=-1, slope=[])
+        The constructor for this class containing default values for every
+        attribute.
+
+    process(self, next_step)
+        A method that updates the current step with information from the next
+        step.
+    """
     def __init__(self, start=-1, end=-1, data=[], stepno=-1, slope=[]):
+        """
+        The constructor for this class containing default values for every
+        attribute.
+
+        Parameters
+        ----------
+        start : int
+            The starting time stamp for this piecewise segment.
+        end : int
+            The end time stamp for this piecewise segment.
+        data : list of floats
+            A list of starting x values for line segments associated with this
+            time step.
+        stepno : int
+            The sequence number of this segment.
+        slope : list of floats
+            A list of slope values for line segments associated with this time step.
+
+        Returns
+        -------
+        None
+        """
         self.start = start
         self.end = end
         self.data = data
         self.stepno = stepno
         self.slope = slope
     def process(self, next_step):
+        """
+        A method that updates the current step with information from the next
+        step.
+
+        Parameters
+        ----------
+        next_step : Step
+            A Step instance containing information about the next step in the
+            timeline. `next_step` contains `start`, `data`, and `stepno`
+            information only.
+
+        Returns
+        -------
+        None
+
+        """
         self.slope = []
         self.end = next_step.start
         for i in range(len(self.data)):
