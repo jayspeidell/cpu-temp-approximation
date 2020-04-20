@@ -57,12 +57,14 @@ def solve(X, Y, PrintZero=True, Verbose=False):
         print(XtY)
         print()
 
-    print(XtX)
-    print(XtY)
+
     try:
         system = concatenate((XtX, XtY), axis=1)
     except:
+        # Concatenate can't broadcast 1d to 2d,
+        # need to convert to 2d manually before broadcast. 
         system = concatenate((XtX, XtY[:,None]), axis=1)
+
     if Verbose:
         print("System of Linear Equations: ")
         print(system)

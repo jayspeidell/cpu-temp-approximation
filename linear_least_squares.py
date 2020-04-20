@@ -57,11 +57,10 @@ LINE = COL_1 + COL_2 + COL_3 + COL_4 + COL_5
 
 def linear_least_squares(timestamps, data, output = 'output/'):
     """
-    Iterate through a list of data points and print the resulting piecewise
-    functions to a text file. One text file will be generated for each CPU
-    for and each line will represent one piecewise step in the format:
+    Use a matrix solver to find a generalized linear least squares solution
+    that approximates the input data with a line. 
 
-    {start time} <= {end time} < ; y_{step number} = {offset} + {slope}x; interpolation
+    {start time} <= {end time} < ; y_{step number} = {offset} + {slope}x; approximation
 
     Parameters
     -------
