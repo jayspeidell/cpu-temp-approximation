@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module lib.cubic_spline</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="lib.html"><font color="#ffffff">lib</font></a>.cubic_spline</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/media/jay/storage/School/CS%20417/cpu_temp/lib/cubic_spline.py">/media/jay/storage/School/CS 417/cpu_temp/lib/cubic_spline.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;module&nbsp;for&nbsp;calculating&nbsp;piecewise&nbsp;cubic&nbsp;spline&nbsp;functions&nbsp;for&nbsp;parallel&nbsp;series<br>
+of&nbsp;time&nbsp;step&nbsp;data&nbsp;points&nbsp;and&nbsp;printing&nbsp;the&nbsp;subsequent&nbsp;formulas&nbsp;to&nbsp;individual<br>
+text&nbsp;files.<br>
+&nbsp;<br>
+Depends&nbsp;on:<br>
+&nbsp;<br>
+parse_temps.parse_raw_temps<br>
+sys<br>
+os.path<br>
+numpy<br>
+&nbsp;<br>
+Constants<br>
+----------<br>
+&nbsp;<br>
+BASE_FILENAME&nbsp;:&nbsp;start<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;base&nbsp;string&nbsp;for&nbsp;generating&nbsp;filenames<br>
+COL_WIDTH&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;default&nbsp;output&nbsp;column&nbsp;width&nbsp;when&nbsp;printing&nbsp;to&nbsp;text&nbsp;file.<br>
+PRECISION&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;precision&nbsp;of&nbsp;all&nbsp;floats&nbsp;in&nbsp;text&nbsp;output.<br>
+COL_1&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;1.<br>
+COL_2&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;2.<br>
+COL_3&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;3.<br>
+COL_4&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;4.<br>
+COL_5&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;5.<br>
+LINE&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;concatenation&nbsp;of&nbsp;all&nbsp;output&nbsp;templates&nbsp;for&nbsp;printing&nbsp;a&nbsp;full&nbsp;line.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="posixpath.html">posixpath</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-cubic_solver"><strong>cubic_solver</strong></a>(timestamps, data, output='output/')</dt><dd><tt>Iterate&nbsp;through&nbsp;a&nbsp;list&nbsp;of&nbsp;data&nbsp;points&nbsp;and&nbsp;print&nbsp;the&nbsp;resulting&nbsp;piecewise<br>
+functions&nbsp;(Bezier&nbsp;curves)&nbsp;to&nbsp;a&nbsp;text&nbsp;file.&nbsp;One&nbsp;text&nbsp;file&nbsp;will&nbsp;be&nbsp;generated<br>
+for&nbsp;each&nbsp;CPU&nbsp;for&nbsp;and&nbsp;each&nbsp;line&nbsp;will&nbsp;represent&nbsp;one&nbsp;piecewise&nbsp;step&nbsp;in&nbsp;the<br>
+format:<br>
+&nbsp;<br>
+{start&nbsp;time}&nbsp;&lt;=&nbsp;{end&nbsp;time}&nbsp;&lt;&nbsp;;&nbsp;y_{step&nbsp;number}&nbsp;=&nbsp;{offset}&nbsp;+&nbsp;{slope}x;&nbsp;interpolation<br>
+&nbsp;<br>
+Parameters<br>
+-------<br>
+timestamps&nbsp;:&nbsp;list(int)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;timestamps&nbsp;from&nbsp;the&nbsp;input&nbsp;file.<br>
+data&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;array&nbsp;of&nbsp;temperature&nbsp;readings&nbsp;where&nbsp;rows&nbsp;represent&nbsp;time&nbsp;steps&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;columns&nbsp;represent&nbsp;CPU&nbsp;cores.<br>
+output&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;base&nbsp;directory&nbsp;for&nbsp;output.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>BASE_FILENAME</strong> = 'Cubix_Spline_Core_'<br>
+<strong>COL_1</strong> = '| {0:&gt;10} &lt;= x &lt; '<br>
+<strong>COL_2</strong> = ' {1:&gt;10}; '<br>
+<strong>COL_3</strong> = ' y_{2:&lt;10} ='<br>
+<strong>COL_4</strong> = '{3:&gt;10.4f} + '<br>
+<strong>COL_5</strong> = '{4:&gt;10.4f}x '<br>
+<strong>COL_6</strong> = '{5:&gt;10.4f}x^2 '<br>
+<strong>COL_7</strong> = '{6:&gt;10.4f}x_3 ; Bezier Curve <font color="#c040c0">\n</font>'<br>
+<strong>COL_WIDTH</strong> = 10<br>
+<strong>LINE</strong> = '| {0:&gt;10} &lt;= x &lt;  {1:&gt;10};  y_{2:&lt;10} ={3:&gt;10.4f...4f}x {5:&gt;10.4f}x^2 {6:&gt;10.4f}x_3 ; Bezier Curve <font color="#c040c0">\n</font>'<br>
+<strong>PRECISION</strong> = 4</td></tr></table>
+</body></html>

@@ -33,11 +33,11 @@ LINE : string
     A concatenation of all output templates for printing a full line.
 """
 
-from parse_temps import (parse_raw_temps)
+from .parse_temps import (parse_raw_temps)
 import sys
 from os import path
 import numpy as np
-from solver import solve
+from .solver import solve
 
 BASE_FILENAME = "Linear_Least_Squares_Core_"
 
@@ -58,7 +58,8 @@ LINE = COL_1 + COL_2 + COL_3 + COL_4 + COL_5
 def linear_least_squares(timestamps, data, output = 'output/'):
     """
     Use a matrix solver to find a generalized linear least squares solution
-    that approximates the input data with a line. 
+    that approximates the input data with a line. This is a simple driver
+    function for the solver module.
 
     {start time} <= {end time} < ; y_{step number} = {offset} + {slope}x; approximation
 

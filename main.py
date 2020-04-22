@@ -13,11 +13,12 @@ Where includes_units is a yes/no statement describing the input file.
 
 """
 import sys
-from solver import solve
+from lib.solver import solve
 from numpy import array, append
-from linear_piecewise_interpolation import piecewise_solver
-from linear_least_squares import linear_least_squares
-from parse_temps import (parse_raw_temps)
+from lib.linear_piecewise_interpolation import piecewise_solver
+from lib.linear_least_squares import linear_least_squares
+from lib.parse_temps import (parse_raw_temps)
+from lib.cubic_spline import cubic_solver
 import os
 import glob
 
@@ -25,19 +26,20 @@ __all__ = ['main']
 
 def main():
     """
-    main()
-
     The main function for this application. It clears the output directory,
     reads in new data as an index list and numpy array, and passes that data
     to the appropriate modules.
 
     Parameters
     -------
-
-    sys.argv[1] : string
+    `sys.argv[1]` : string
         Path to the file containing data to be analyzed.
-    sys.argv[2] : string
+    `sys.argv[2]` : string
         A "yes"/"no" boolean flagging the input data as being labelled or not.
+
+    Return
+    -------
+    0
     """
     # Clears output directory.
     for f in glob.glob('output/*'):
@@ -60,6 +62,9 @@ def main():
 
     piecewise_solver(index, data)
     linear_least_squares(index, data)
+    cubic_solver(index,data)
+
+    return 0
 
 
 if __name__== "__main__":

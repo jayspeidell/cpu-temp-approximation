@@ -1,10 +1,15 @@
-import pytest
+"""
+This is a driver function that calls the extensively tested lib.solve.py and
+outputs the results. The math is already covered so this test module only
+focuses on output. 
+"""
 
+import pytest
 import os
 import glob
 import filecmp
-from linear_least_squares import linear_least_squares
-from parse_temps import (parse_raw_temps)
+from lib.linear_least_squares import linear_least_squares
+from lib.parse_temps import (parse_raw_temps)
 from numpy import array, append, array_equal, allclose
 
 

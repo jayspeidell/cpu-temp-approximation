@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module lib.rref</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="lib.html"><font color="#ffffff">lib</font></a>.rref</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/media/jay/storage/School/CS%20417/cpu_temp/lib/rref.py">/media/jay/storage/School/CS 417/cpu_temp/lib/rref.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;reduce&nbsp;row&nbsp;echelon&nbsp;form&nbsp;module&nbsp;for&nbsp;solving&nbsp;systems&nbsp;of&nbsp;linear&nbsp;equations.<br>
+&nbsp;<br>
+No&nbsp;dependencies.&nbsp;I&nbsp;used&nbsp;a&nbsp;list&nbsp;conversion&nbsp;to&nbsp;avoid&nbsp;the&nbsp;numpy<br>
+import&nbsp;here.<br>
+&nbsp;<br>
+The&nbsp;main&nbsp;driver&nbsp;function&nbsp;is&nbsp;<a href="#-rref">rref</a>(),&nbsp;other&nbsp;function&nbsp;support&nbsp;it.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-backsolve"><strong>backsolve</strong></a>(arr)</dt><dd><tt>A&nbsp;function&nbsp;to&nbsp;rake&nbsp;the&nbsp;row&nbsp;echelon&nbsp;form&nbsp;of&nbsp;a&nbsp;matrix&nbsp;and&nbsp;reduce&nbsp;it&nbsp;to&nbsp;the<br>
+reduced&nbsp;row&nbsp;echelon&nbsp;form.<br>
+&nbsp;<br>
+Parameters<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;an&nbsp;array&nbsp;in&nbsp;ref<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;input&nbsp;array&nbsp;in&nbsp;rref</tt></dd></dl>
+ <dl><dt><a name="-eliminate"><strong>eliminate</strong></a>(arr, target_row)</dt><dd><tt>A&nbsp;function&nbsp;to&nbsp;change&nbsp;all&nbsp;values&nbsp;of&nbsp;the&nbsp;target&nbsp;column,&nbsp;apart&nbsp;from<br>
+the&nbsp;target&nbsp;row,&nbsp;to&nbsp;zero.&nbsp;The&nbsp;rest&nbsp;of&nbsp;the&nbsp;row&nbsp;is&nbsp;modified&nbsp;accordingly<br>
+as&nbsp;the&nbsp;whole&nbsp;rows&nbsp;are&nbsp;subtracted&nbsp;from&nbsp;each&nbsp;other.<br>
+&nbsp;<br>
+Parameters<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;input&nbsp;array<br>
+row&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;index&nbsp;of&nbsp;both&nbsp;the&nbsp;row&nbsp;and&nbsp;column&nbsp;being&nbsp;examined<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;array&nbsp;with&nbsp;appropriate&nbsp;values&nbsp;eliminated</tt></dd></dl>
+ <dl><dt><a name="-row_scale"><strong>row_scale</strong></a>(arr, row)</dt><dd><tt>A&nbsp;function&nbsp;to&nbsp;scale&nbsp;one&nbsp;row&nbsp;of&nbsp;a&nbsp;numpy&nbsp;array&nbsp;based&nbsp;on&nbsp;the&nbsp;index&nbsp;being<br>
+examined.&nbsp;It&nbsp;results&nbsp;in&nbsp;the&nbsp;original&nbsp;[row][row]&nbsp;value&nbsp;scaled&nbsp;to&nbsp;one<br>
+and&nbsp;the&nbsp;rest&nbsp;of&nbsp;the&nbsp;row&nbsp;scaled&nbsp;accordingly.<br>
+&nbsp;<br>
+Parameters<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;input&nbsp;array<br>
+row&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;index&nbsp;of&nbsp;both&nbsp;row&nbsp;and&nbsp;column&nbsp;being&nbsp;examined<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;array&nbsp;with&nbsp;one&nbsp;row&nbsp;scaled</tt></dd></dl>
+ <dl><dt><a name="-rref"><strong>rref</strong></a>(arr)</dt><dd><tt>A&nbsp;driver&nbsp;function&nbsp;to&nbsp;solve&nbsp;a&nbsp;linear&nbsp;system&nbsp;of&nbsp;equations<br>
+to&nbsp;their&nbsp;reduced&nbsp;row&nbsp;echelon&nbsp;form.<br>
+&nbsp;<br>
+Parameters<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;system&nbsp;of&nbsp;linear&nbsp;equations&nbsp;to&nbsp;be&nbsp;solved<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;rref</tt></dd></dl>
+ <dl><dt><a name="-swap_rows"><strong>swap_rows</strong></a>(arr, row, idx)</dt><dd><tt>A&nbsp;function&nbsp;that&nbsp;swaps&nbsp;two&nbsp;rows&nbsp;in&nbsp;a&nbsp;numpy&nbsp;array.<br>
+&nbsp;<br>
+Parameters<br>
+-------<br>
+arr&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;input&nbsp;array<br>
+row&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;row&nbsp;being&nbsp;examined&nbsp;by&nbsp;the&nbsp;top&nbsp;level&nbsp;function<br>
+idx&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;intex&nbsp;of&nbsp;the&nbsp;row&nbsp;to&nbsp;be&nbsp;swapped&nbsp;with&nbsp;"row"<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+arr_new&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;input&nbsp;array&nbsp;with&nbsp;the&nbsp;rows&nbsp;swapped</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>__all__</strong> = ['rref', 'swap_rows', 'row_scale', 'eliminate', 'backsolve']</td></tr></table>
+</body></html>

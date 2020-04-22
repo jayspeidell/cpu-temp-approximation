@@ -1,10 +1,9 @@
 import pytest
-
-from linear_piecewise_interpolation import Step, piecewise_solver
 import os
 import glob
 import filecmp
-from parse_temps import (parse_raw_temps)
+from lib.parse_temps import (parse_raw_temps)
+from lib.linear_piecewise_interpolation import Step, piecewise_solver
 from numpy import array, append
 
 

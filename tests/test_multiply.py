@@ -1,7 +1,6 @@
 import pytest
 from numpy import array, matmul, array_equal, allclose
-
-from multiply import multiply
+from lib.multiply import multiply
 
 @pytest.mark.parametrize(
     'lhs, rhs', [

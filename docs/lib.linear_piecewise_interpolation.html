@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module lib.linear_piecewise_interpolation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="lib.html"><font color="#ffffff">lib</font></a>.linear_piecewise_interpolation</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/media/jay/storage/School/CS%20417/cpu_temp/lib/linear_piecewise_interpolation.py">/media/jay/storage/School/CS 417/cpu_temp/lib/linear_piecewise_interpolation.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;module&nbsp;for&nbsp;calculating&nbsp;piecewise&nbsp;linear&nbsp;interpolation&nbsp;for&nbsp;parallel&nbsp;series<br>
+of&nbsp;time&nbsp;step&nbsp;data&nbsp;points&nbsp;and&nbsp;printing&nbsp;the&nbsp;subsequent&nbsp;formulas&nbsp;to&nbsp;individual<br>
+text&nbsp;files.<br>
+&nbsp;<br>
+Depends&nbsp;on:<br>
+&nbsp;<br>
+parse_temps.parse_raw_temps<br>
+sys<br>
+os.path<br>
+numpy<br>
+&nbsp;<br>
+Constants<br>
+----------<br>
+&nbsp;<br>
+BASE_FILENAME&nbsp;:&nbsp;start<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;base&nbsp;string&nbsp;for&nbsp;generating&nbsp;filenames<br>
+COL_WIDTH&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;default&nbsp;output&nbsp;column&nbsp;width&nbsp;when&nbsp;printing&nbsp;to&nbsp;text&nbsp;file.<br>
+PRECISION&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;precision&nbsp;of&nbsp;all&nbsp;floats&nbsp;in&nbsp;text&nbsp;output.<br>
+COL_1&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;1.<br>
+COL_2&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;2.<br>
+COL_3&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;3.<br>
+COL_4&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;4.<br>
+COL_5&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;output&nbsp;template&nbsp;for&nbsp;column&nbsp;5.<br>
+LINE&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;concatenation&nbsp;of&nbsp;all&nbsp;output&nbsp;templates&nbsp;for&nbsp;printing&nbsp;a&nbsp;full&nbsp;line.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="posixpath.html">posixpath</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="lib.linear_piecewise_interpolation.html#Step">Step</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Step">class <strong>Step</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Step">Step</a>(start=-1,&nbsp;end=-1,&nbsp;data=[],&nbsp;stepno=-1,&nbsp;slope=[])<br>
+&nbsp;<br>
+A&nbsp;<a href="#Step">Step</a>&nbsp;represents&nbsp;one&nbsp;piecewise&nbsp;step&nbsp;in&nbsp;linear&nbsp;interpolation.&nbsp;An&nbsp;instance<br>
+is&nbsp;initialized&nbsp;with&nbsp;`start`,&nbsp;`data`,&nbsp;and&nbsp;`stepno`&nbsp;and&nbsp;uses&nbsp;information&nbsp;from<br>
+the&nbsp;following&nbsp;<a href="#Step">Step</a>&nbsp;instance&nbsp;in&nbsp;the&nbsp;sequence&nbsp;to&nbsp;update&nbsp;`end`&nbsp;and&nbsp;`slope`.<br>
+&nbsp;<br>
+The&nbsp;class&nbsp;scales&nbsp;to&nbsp;handle&nbsp;parallel&nbsp;timelines.<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+start&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;starting&nbsp;time&nbsp;stamp&nbsp;for&nbsp;this&nbsp;piecewise&nbsp;segment.<br>
+end&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;end&nbsp;time&nbsp;stamp&nbsp;for&nbsp;this&nbsp;piecewise&nbsp;segment.<br>
+data&nbsp;:&nbsp;list&nbsp;of&nbsp;floats<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;starting&nbsp;x&nbsp;values&nbsp;for&nbsp;line&nbsp;segments&nbsp;associated&nbsp;with&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;time&nbsp;step.<br>
+stepno&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;sequence&nbsp;number&nbsp;of&nbsp;this&nbsp;segment.<br>
+slope&nbsp;:&nbsp;list&nbsp;of&nbsp;floats<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;slope&nbsp;values&nbsp;for&nbsp;line&nbsp;segments&nbsp;associated&nbsp;with&nbsp;this&nbsp;time&nbsp;step.<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+<a href="#Step-__init__">__init__</a>(self,&nbsp;start=-1,&nbsp;end=-1,&nbsp;data=[],&nbsp;stepno=-1,&nbsp;slope=[])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;constructor&nbsp;for&nbsp;this&nbsp;class&nbsp;containing&nbsp;default&nbsp;values&nbsp;for&nbsp;every<br>
+&nbsp;&nbsp;&nbsp;&nbsp;attribute.<br>
+&nbsp;<br>
+<a href="#Step-process">process</a>(self,&nbsp;next_step)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;method&nbsp;that&nbsp;updates&nbsp;the&nbsp;current&nbsp;step&nbsp;with&nbsp;information&nbsp;from&nbsp;the&nbsp;next<br>
+&nbsp;&nbsp;&nbsp;&nbsp;step.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Step-__init__"><strong>__init__</strong></a>(self, start=-1, end=-1, data=[], stepno=-1, slope=[])</dt><dd><tt>The&nbsp;constructor&nbsp;for&nbsp;this&nbsp;class&nbsp;containing&nbsp;default&nbsp;values&nbsp;for&nbsp;every<br>
+attribute.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+start&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;starting&nbsp;time&nbsp;stamp&nbsp;for&nbsp;this&nbsp;piecewise&nbsp;segment.<br>
+end&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;end&nbsp;time&nbsp;stamp&nbsp;for&nbsp;this&nbsp;piecewise&nbsp;segment.<br>
+data&nbsp;:&nbsp;list&nbsp;of&nbsp;floats<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;starting&nbsp;x&nbsp;values&nbsp;for&nbsp;line&nbsp;segments&nbsp;associated&nbsp;with&nbsp;this<br>
+&nbsp;&nbsp;&nbsp;&nbsp;time&nbsp;step.<br>
+stepno&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;sequence&nbsp;number&nbsp;of&nbsp;this&nbsp;segment.<br>
+slope&nbsp;:&nbsp;list&nbsp;of&nbsp;floats<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;slope&nbsp;values&nbsp;for&nbsp;line&nbsp;segments&nbsp;associated&nbsp;with&nbsp;this&nbsp;time&nbsp;step.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None</tt></dd></dl>
+
+<dl><dt><a name="Step-process"><strong>process</strong></a>(self, next_step)</dt><dd><tt>A&nbsp;method&nbsp;that&nbsp;updates&nbsp;the&nbsp;current&nbsp;step&nbsp;with&nbsp;information&nbsp;from&nbsp;the&nbsp;next<br>
+step.<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+next_step&nbsp;:&nbsp;<a href="#Step">Step</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;<a href="#Step">Step</a>&nbsp;instance&nbsp;containing&nbsp;information&nbsp;about&nbsp;the&nbsp;next&nbsp;step&nbsp;in&nbsp;the<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeline.&nbsp;`next_step`&nbsp;contains&nbsp;`start`,&nbsp;`data`,&nbsp;and&nbsp;`stepno`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;information&nbsp;only.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-piecewise_solver"><strong>piecewise_solver</strong></a>(timestamps, data, output='output/')</dt><dd><tt>Iterate&nbsp;through&nbsp;a&nbsp;list&nbsp;of&nbsp;data&nbsp;points&nbsp;and&nbsp;print&nbsp;the&nbsp;resulting&nbsp;piecewise<br>
+functions&nbsp;to&nbsp;a&nbsp;text&nbsp;file.&nbsp;One&nbsp;text&nbsp;file&nbsp;will&nbsp;be&nbsp;generated&nbsp;for&nbsp;each&nbsp;CPU<br>
+for&nbsp;and&nbsp;each&nbsp;line&nbsp;will&nbsp;represent&nbsp;one&nbsp;piecewise&nbsp;step&nbsp;in&nbsp;the&nbsp;format:<br>
+&nbsp;<br>
+{start&nbsp;time}&nbsp;&lt;=&nbsp;{end&nbsp;time}&nbsp;&lt;&nbsp;;&nbsp;y_{step&nbsp;number}&nbsp;=&nbsp;{offset}&nbsp;+&nbsp;{slope}x;&nbsp;interpolation<br>
+&nbsp;<br>
+Parameters<br>
+-------<br>
+timestamps&nbsp;:&nbsp;list(int)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;timestamps&nbsp;from&nbsp;the&nbsp;input&nbsp;file.<br>
+data&nbsp;:&nbsp;numpy.array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;array&nbsp;of&nbsp;temperature&nbsp;readings&nbsp;where&nbsp;rows&nbsp;represent&nbsp;time&nbsp;steps&nbsp;and<br>
+&nbsp;&nbsp;&nbsp;&nbsp;columns&nbsp;represent&nbsp;CPU&nbsp;cores.<br>
+output&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;base&nbsp;directory&nbsp;for&nbsp;output.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+None</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>BASE_FILENAME</strong> = 'Linear_Piecewise_Interpolation_Core_'<br>
+<strong>COL_1</strong> = '| {0:&gt;10} &lt;= x &lt; '<br>
+<strong>COL_2</strong> = ' {1:&gt;10}; '<br>
+<strong>COL_3</strong> = ' y_{2:&lt;10} ='<br>
+<strong>COL_4</strong> = '{3:&gt;10.4f} + '<br>
+<strong>COL_5</strong> = '{4:&gt;10.4f}x; interpolation <font color="#c040c0">\n</font>'<br>
+<strong>COL_WIDTH</strong> = 10<br>
+<strong>LINE</strong> = '| {0:&gt;10} &lt;= x &lt;  {1:&gt;10};  y_{2:&lt;10} ={3:&gt;10.4f} + {4:&gt;10.4f}x; interpolation <font color="#c040c0">\n</font>'<br>
+<strong>PRECISION</strong> = 4</td></tr></table>
+</body></html>

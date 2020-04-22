@@ -2,7 +2,7 @@
 import pytest
 from numpy import array, matmul, array_equal, concatenate
 
-from rref import rref, swap_rows, row_scale, eliminate, backsolve
+from lib.rref import rref, swap_rows, row_scale, eliminate, backsolve
 
 @pytest.mark.parametrize(
     'lhs, rhs', [

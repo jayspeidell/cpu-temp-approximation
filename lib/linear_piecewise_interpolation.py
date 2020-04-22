@@ -33,7 +33,7 @@ LINE : string
     A concatenation of all output templates for printing a full line.
 """
 
-from parse_temps import (parse_raw_temps)
+from .parse_temps import (parse_raw_temps)
 import sys
 from os import path
 import numpy as np

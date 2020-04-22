@@ -33,13 +33,20 @@ Sample input data is in data/
 
 Results are written to files in output/
 
+## 2. Project Info
 
-## 2. Requirements  
+This program solves the problem of interpolating or approximating a timeline of CPU temperatures. It uses three strategies:
+
+- Linear Piecewise Interpolation: This allows us to reasonably approximate values in between time steps. One piecewise function is generated for each time step.
+- Linear Least Squares: This creates a generalized function to approximate the CPU temperature as a function of time. But since CPU temperature is based on CPU activity rather than time, I believe that as more time steps are added this function will converge to a horizontal line intercepting the y axis at the average temperature value.
+- Cubic Spline: Another piecewise strategy, this time drawing bezier curves between points. 
+
+## 3. Requirements  
 
 numpy
 
 
-## 3. Compilation & Execution Instructions     
+## 4. Compilation & Execution Instructions     
 
 Run unit tests:
 

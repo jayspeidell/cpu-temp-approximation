@@ -8,26 +8,49 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>main</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/media/jay/storage/School/CS%20417/jays_matrix_solver/main.py">/media/jay/storage/School/CS 417/jays_matrix_solver/main.py</a></font></td></tr></table>
-    <p><tt>A&nbsp;program&nbsp;that&nbsp;solves&nbsp;systems&nbsp;of&nbsp;linear&nbsp;equations.<br>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/media/jay/storage/School/CS%20417/cpu_temp/main.py">/media/jay/storage/School/CS 417/cpu_temp/main.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;program&nbsp;that&nbsp;approximates&nbsp;CPU&nbsp;Tempteratures&nbsp;using&nbsp;piecewise&nbsp;linear<br>
+interpolation&nbsp;and&nbsp;linear&nbsp;least&nbsp;squares.<br>
 &nbsp;<br>
 by&nbsp;Jay&nbsp;Speidell&nbsp;for&nbsp;CS&nbsp;417.<br>
 &nbsp;<br>
 For&nbsp;more&nbsp;details,&nbsp;see&nbsp;README.md<br>
 &nbsp;<br>
 To&nbsp;run&nbsp;the&nbsp;program,&nbsp;use&nbsp;the&nbsp;command:<br>
-&gt;&nbsp;python&nbsp;main.py</tt></p>
+&gt;&nbsp;python&nbsp;main.py&nbsp;filename&nbsp;includes_units<br>
+&nbsp;<br>
+Where&nbsp;includes_units&nbsp;is&nbsp;a&nbsp;yes/no&nbsp;statement&nbsp;describing&nbsp;the&nbsp;input&nbsp;file.</tt></p>
 <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="glob.html">glob</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt><a href="#-main">main</a>()<br>
+<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>The&nbsp;main&nbsp;function&nbsp;for&nbsp;this&nbsp;application.&nbsp;It&nbsp;clears&nbsp;the&nbsp;output&nbsp;directory,<br>
+reads&nbsp;in&nbsp;new&nbsp;data&nbsp;as&nbsp;an&nbsp;index&nbsp;list&nbsp;and&nbsp;numpy&nbsp;array,&nbsp;and&nbsp;passes&nbsp;that&nbsp;data<br>
+to&nbsp;the&nbsp;appropriate&nbsp;modules.<br>
 &nbsp;<br>
-Includes&nbsp;hard-coded&nbsp;X,&nbsp;Xt,&nbsp;and&nbsp;Y&nbsp;arrays&nbsp;from&nbsp;the&nbsp;Quadratic&nbsp;example&nbsp;in&nbsp;the<br>
-course&nbsp;material.&nbsp;Passes&nbsp;these&nbsp;to&nbsp;solve()&nbsp;and&nbsp;prints&nbsp;the&nbsp;return.</tt></dd></dl>
+Parameters<br>
+-------<br>
+`sys.argv[1]`&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Path&nbsp;to&nbsp;the&nbsp;file&nbsp;containing&nbsp;data&nbsp;to&nbsp;be&nbsp;analyzed.<br>
+`sys.argv[2]`&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;"yes"/"no"&nbsp;boolean&nbsp;flagging&nbsp;the&nbsp;input&nbsp;data&nbsp;as&nbsp;being&nbsp;labelled&nbsp;or&nbsp;not.<br>
+&nbsp;<br>
+Return<br>
+-------<br>
+0</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">

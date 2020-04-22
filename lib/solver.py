@@ -5,10 +5,10 @@ then returns the results.
 """
 
 from numpy import array, concatenate, zeros
-from multiply import multiply
-from rref import rref
+from .multiply import multiply
+from .rref import rref
 
-__all__ = ['solve']
+__all__ = ['solve', 'transpose']
 
 def solve(X, Y, PrintZero=True, Verbose=False):
     """
@@ -62,7 +62,7 @@ def solve(X, Y, PrintZero=True, Verbose=False):
         system = concatenate((XtX, XtY), axis=1)
     except:
         # Concatenate can't broadcast 1d to 2d,
-        # need to convert to 2d manually before broadcast. 
+        # need to convert to 2d manually before broadcast.
         system = concatenate((XtX, XtY[:,None]), axis=1)
 
     if Verbose:
@@ -110,6 +110,5 @@ def transpose(X):
             for j in range(X.shape[1]):
                 Xt[j][i] = X[i][j]
 
-    print(Xt)
 
     return Xt
