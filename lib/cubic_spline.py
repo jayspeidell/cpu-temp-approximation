@@ -3,6 +3,8 @@ A module for calculating piecewise cubic spline functions for parallel series
 of time step data points and printing the subsequent formulas to individual
 text files.
 
+This bonus module is not covered by unit tests, only pencil and paper. 
+
 Depends on:
 
 parse_temps.parse_raw_temps
