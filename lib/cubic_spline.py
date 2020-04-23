@@ -3,7 +3,7 @@ A module for calculating piecewise cubic spline functions for parallel series
 of time step data points and printing the subsequent formulas to individual
 text files.
 
-This bonus module is not covered by unit tests, only pencil and paper. 
+This bonus module is not covered by unit tests, only pencil and paper.
 
 Depends on:
 
@@ -31,6 +31,10 @@ COL_4 : string
     An output template for column 4.
 COL_5 : string
     An output template for column 5.
+COL_6 : string
+    An output template for column 6.
+COL_7 : string
+    An output template for column 7.
 LINE : string
     A concatenation of all output templates for printing a full line.
 """

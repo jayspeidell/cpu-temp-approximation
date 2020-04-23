@@ -20,7 +20,6 @@ def solve(X, Y, PrintZero=True, Verbose=False):
     Parameters
     -------
     X : numpy.array X
-    Xt : numpy.array the transpose of X
     Y : numpy.array Y
     PrintZero : boolean
         Whether or not to print zero coefficients, in string return, default is True
