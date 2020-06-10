@@ -5,6 +5,8 @@ This module is a collection of input helpers for the CPU Temperatures Project.
 All code may be used freely in the semester project, iff it is imported using
 ``import parse_temps`` or ``from parse_temps import {...}`` where ``{...}``
 represents one or more functions.
+
+(This code was provided by the course instructor along with the input data.) 
 """
 
 
